@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "scripts": {
-    "pub": "npm publish",
+    "pub": "npm run patch && npm publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "rollup -c"
@@ -40,5 +40,8 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@allui/css": "^0.0.3"
   }
 }
