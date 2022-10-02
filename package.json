@@ -8,7 +8,8 @@
     "pub": "npm version patch && npm publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "start": "rollup -c -w"
   },
   "keywords": [],
   "author": "Vikram Chauhan",
@@ -43,6 +44,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@allui/css": "^0.0.3"
+    "@allui/css": "*"
   }
 }
