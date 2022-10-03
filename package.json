@@ -2,8 +2,8 @@
   "name": "@allui/react",
   "version": "0.0.2",
   "description": "An all-in-one React UI Framework for efficient web application development.",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.es.js",
   "scripts": {
     "pub": "npm version patch && npm publish",
     "storybook": "start-storybook -p 6006",
@@ -20,7 +20,9 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-react": "^7.18.6",
+    "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^14.1.0",
+    "@rollup/plugin-typescript": "^8.5.0",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",
@@ -29,6 +31,7 @@
     "@storybook/manager-webpack4": "^6.5.12",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.21",
     "babel-loader": "^8.2.5",
     "postcss": "^8.4.17",
     "react": "^18.2.0",
@@ -37,7 +40,8 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.8.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",
