@@ -1,11 +1,12 @@
 {
   "name": "@allui/react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An all-in-one React UI Framework for efficient web application development.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.es.js",
+  "types": "dist/esm/index.d.ts",
   "scripts": {
-    "pub": "npm version patch && npm publish",
+    "pub": "npm publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "rollup -c",
@@ -38,6 +39,7 @@
     "react-dom": "^18.2.0",
     "rollup": "^2.79.1",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
@@ -49,5 +51,10 @@
   },
   "dependencies": {
     "@allui/css": "*"
+  },
+  "homepage": "https://github.com/all-ui/react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/all-ui/react"
   }
 }
