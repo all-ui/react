@@ -1,6 +1,6 @@
 {
   "name": "@allui/react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An all-in-one React UI Framework for efficient web application development.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.es.js",
