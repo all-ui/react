@@ -15,6 +15,9 @@ const ButtonRaw: FC<ButtonRawProps> = forwardRef((props) => {
       ? theme.colors[theme.background] || theme.background
       : defaultTheme.colors[defaultTheme.background] ||
         defaultTheme.background};
+    color: ${theme
+      ? theme.colors[theme.fontColor] || theme.fontColor
+      : defaultTheme.colors[defaultTheme.fontColor] || defaultTheme.fontColor};
   `;
   return (
     <Button
