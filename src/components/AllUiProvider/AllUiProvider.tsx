@@ -1,13 +1,10 @@
 import * as React from "react";
-import { Theme, SetTheme, AllUiProviderProps } from "./AllUiProvider.types";
-
-let defaultTheme: Theme = {
-  colors: {
-    primary: "black",
-    secondary: "white",
-  },
-  background: "primary",
-};
+import {
+  Theme,
+  SetTheme,
+  AllUiProviderProps,
+  defaultTheme,
+} from "./AllUiProvider.types";
 
 const AllUiContext =
   React.createContext<{ theme: Theme; setTheme: SetTheme } | undefined>(
@@ -15,11 +12,15 @@ const AllUiContext =
   );
 
 const AllUiProvider = ({ children, myTheme }: AllUiProviderProps) => {
+  let defaultThemeCopy = JSON.parse(JSON.stringify(defaultTheme));
   const context = React.useContext(AllUiContext);
   if (context) {
-    defaultTheme = context?.theme;
+    defaultThemeCopy = context?.theme;
   }
-  const [theme, updateTheme] = React.useState({ ...defaultTheme, ...myTheme });
+  const [theme, updateTheme] = React.useState({
+    ...defaultThemeCopy,
+    ...myTheme,
+  });
 
   const setTheme = (myTheme: Theme) => {
     updateTheme({ ...theme, ...myTheme });
