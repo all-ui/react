@@ -1,11 +1,11 @@
 import React, { FC, useContext, forwardRef } from "react";
 import styled from "styled-components";
-import { ContainerFluidProps } from "./ContainerFluid.types";
+import { DivProps } from "./Div.types";
 import { AllUiContext } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 
-const ContainerFluid: FC<ContainerFluidProps> = forwardRef((props) => {
+const Div: FC<DivProps> = forwardRef((props) => {
   const { children, className, style, background } = props;
   const context = useContext(AllUiContext);
   let theme: Theme = context?.theme || defaultTheme;
@@ -31,21 +31,20 @@ const ContainerFluid: FC<ContainerFluidProps> = forwardRef((props) => {
     );
     backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
   }
-  console.log("backgroundFinal", backgroundFinal);
-  const Div = styled.div`
+
+  const DivTag = styled.div`
     ${backgroundFinal ? backgroundFinal : null};
   `;
+
   return (
-    <Div
+    <DivTag
       {...props}
-      className={`${
-        className ? "container-fluid " + className : "container-fluid"
-      }`}
+      className={`${className ? className : ""}`}
       style={style || {}}
     >
       {children}
-    </Div>
+    </DivTag>
   );
 });
 
-export default AllUiCssHOC(ContainerFluid);
+export default AllUiCssHOC(Div);

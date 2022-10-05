@@ -1,6 +1,6 @@
 import React, { FC, forwardRef } from "react";
 import "@allui/css/dist/allui.css";
-import { AllUiCssHOCProps } from "./AllUiCssHOC.types";
+import { AllUiHOCProps } from "./AllUiHOC.types";
 
 const AllUiCssHOC = (component: any) => {
   return component;

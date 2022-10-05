@@ -9,30 +9,25 @@ import {
 } from "./AllUiProvider.types";
 
 const AllUiContext =
-  React.createContext<{ theme: Theme; setTheme: SetTheme } | undefined>(
+  React.createContext<{ theme: Theme; updateTheme: SetTheme } | undefined>(
     undefined
   );
 
 const AllUiProvider = ({ children, myTheme }: AllUiProviderProps) => {
   let defaultThemeCopy = JSON.parse(JSON.stringify(defaultTheme));
   const context = React.useContext(AllUiContext);
+
   if (context) {
     defaultThemeCopy = context?.theme;
   }
-  // const [theme, updateTheme] = React.useState({
-  //   ...defaultThemeCopy,
-  //   ...myTheme,
-  // });
 
-  const [theme, updateTheme] = React.useState(
-    _.merge(defaultThemeCopy, myTheme)
-  );
+  const [theme, setTheme] = React.useState(_.merge(defaultThemeCopy, myTheme));
 
-  const setTheme: SetTheme = (myTheme: UserTheme) => {
-    updateTheme({ ...theme, ...myTheme });
+  const updateTheme: SetTheme = (myTheme: UserTheme) => {
+    setTheme({ ...theme, ..._.merge(theme, myTheme) });
   };
   // NOTE: you *might* need to memoize this value
-  const value = { theme, setTheme };
+  const value = { theme, updateTheme };
   return (
     <AllUiContext.Provider value={value}>{children}</AllUiContext.Provider>
   );
@@ -43,7 +38,7 @@ function useTheme() {
   if (context === undefined) {
     throw new Error("useCount must be used within a CountProvider");
   }
-  return [context.theme, context.setTheme];
+  return { theme: context.theme, setTheme: context.updateTheme };
 }
 
 export { AllUiProvider, useTheme, AllUiContext };

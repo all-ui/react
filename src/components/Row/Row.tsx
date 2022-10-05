@@ -1,40 +1,23 @@
-import React, { FC, useContext, forwardRef } from "react";
+import React, { FC, useContext, forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { RowProps } from "./Row.types";
-import { AllUiContext } from "../AllUiProvider";
+import { AllUiContext, useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
-import AllUiCssHOC from "../AllUiCssHOC";
+import AllUiCssHOC from "../AllUiHOC";
+import _ from "lodash";
 
 const Row: FC<RowProps> = forwardRef((props) => {
   const { children, className, style, background } = props;
-  const context = useContext(AllUiContext);
-  let theme: Theme = context?.theme || defaultTheme;
 
+  const { theme: themeOrg, setTheme } = useTheme();
+  let theme: Theme = themeOrg || defaultTheme;
+  useEffect(() => {
+    if (background) {
+      //setTheme({ background });
+    }
+  }, []);
   // ---------BACKGROUND------------------//
-  let backgroundFinal: string = "#fff";
-  if (theme.background.type === "gradient") {
-    let gradient: any =
-      theme[theme.background.type + "s"][theme.background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  } else {
-    backgroundFinal =
-      theme[theme.background.type + "s"][theme.background.which];
-  }
-
-  if (theme.background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[theme.background.type + "s"][theme.background.which] ||
-      theme.background.which
-    }`;
-  }
+  let backgroundFinal: string = "";
 
   if (background && background.type === "color") {
     backgroundFinal = `background: ${

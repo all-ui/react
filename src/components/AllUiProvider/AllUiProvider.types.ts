@@ -4,7 +4,7 @@ export interface BaseTheme {
 
 export interface Theme extends BaseTheme {
   colors: { [key: string]: string };
-  background: { type: "color" | "gradient"; which: string };
+  background: { type: string; which: string };
   fontFamily: string[];
   fontColor: string;
   fontSize: string;
@@ -19,7 +19,7 @@ export interface Theme extends BaseTheme {
 
 export interface UserTheme extends BaseTheme {
   colors?: { [key: string]: string };
-  background?: { type: "color" | "gradient"; which: string };
+  background?: { type: string; which: string };
   fontFamily?: string[];
   fontColor?: string;
   fontSize?: string;
@@ -27,7 +27,9 @@ export interface UserTheme extends BaseTheme {
   lineHeight?: string;
   letterSpacing?: string;
   headings?: { [key: string]: { [key: string]: string } };
-  gradients?: { [key: string]: { [key: string]: string | string[] } };
+  gradients?: {
+    [key: string]: { [key: string]: string | { which: string; op: string }[] };
+  };
 }
 
 export type SetTheme = (theme: UserTheme) => void;
