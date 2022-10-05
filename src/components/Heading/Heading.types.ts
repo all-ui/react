@@ -1,4 +1,8 @@
-export interface HeadingProps {
+export interface PropsBase {
+  [key: string]: any;
+}
+
+export interface HeadingProps extends PropsBase {
   children: React.ReactNode;
   className?: string;
   style?: Object;

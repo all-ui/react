@@ -30,7 +30,7 @@ export interface UserTheme extends BaseTheme {
   gradients?: { [key: string]: { [key: string]: string | string[] } };
 }
 
-export type SetTheme = (theme: Theme) => void;
+export type SetTheme = (theme: UserTheme) => void;
 
 export type AllUiProviderProps = {
   children: React.ReactNode;
@@ -42,7 +42,7 @@ export const defaultTheme: Theme = {
     one: "black",
     two: "white",
   },
-  background: { type: "gradient", which: "one" },
+  background: { type: "color", which: "one" },
   fontFamily: [
     "system-ui",
     "-apple-system",

@@ -1,4 +1,5 @@
 import * as React from "react";
+import _ from "lodash";
 import {
   Theme,
   UserTheme,
@@ -18,12 +19,16 @@ const AllUiProvider = ({ children, myTheme }: AllUiProviderProps) => {
   if (context) {
     defaultThemeCopy = context?.theme;
   }
-  const [theme, updateTheme] = React.useState({
-    ...defaultThemeCopy,
-    ...myTheme,
-  });
+  // const [theme, updateTheme] = React.useState({
+  //   ...defaultThemeCopy,
+  //   ...myTheme,
+  // });
 
-  const setTheme = (myTheme: UserTheme) => {
+  const [theme, updateTheme] = React.useState(
+    _.merge(defaultThemeCopy, myTheme)
+  );
+
+  const setTheme: SetTheme = (myTheme: UserTheme) => {
     updateTheme({ ...theme, ...myTheme });
   };
   // NOTE: you *might* need to memoize this value
