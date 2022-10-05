@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Theme,
+  UserTheme,
   SetTheme,
   AllUiProviderProps,
   defaultTheme,
@@ -22,7 +23,7 @@ const AllUiProvider = ({ children, myTheme }: AllUiProviderProps) => {
     ...myTheme,
   });
 
-  const setTheme = (myTheme: Theme) => {
+  const setTheme = (myTheme: UserTheme) => {
     updateTheme({ ...theme, ...myTheme });
   };
   // NOTE: you *might* need to memoize this value
