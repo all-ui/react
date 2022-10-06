@@ -19,4 +19,6 @@ export interface InputProps extends PropsBase {
   border?: string;
   borderRadius?: string;
   transition?: string;
+
+  withIcon?: React.ReactNode;
 }

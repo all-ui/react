@@ -7,8 +7,7 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 
 const Input: FC<InputProps> = forwardRef((props) => {
-  const { children, className, style, type, background, fontColor, withIcon } =
-    props;
+  const { children, className, style, type, background, fontColor } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
@@ -68,30 +67,15 @@ const Input: FC<InputProps> = forwardRef((props) => {
     ${backgroundFinal ? backgroundFinal : null};
   `;
 
-  // let propsCopy = JSON.parse(JSON.stringify(props));
-  // if (propsCopy.withIcon) delete propsCopy.withIcon;
-
-  if (withIcon) {
-    return (
-      <div className="input-with-icon full-width">
-        <InputTag
-          {...props}
-          type={type}
-          className={`${className ? "input " + className : " input"}`}
-          style={style || {}}
-        ></InputTag>
-        {withIcon}
-      </div>
-    );
-  }
-
   return (
     <InputTag
       {...props}
       type={type}
       className={`${className ? "input " + className : " input"}`}
       style={style || {}}
-    ></InputTag>
+    >
+      {children}
+    </InputTag>
   );
 });
 
