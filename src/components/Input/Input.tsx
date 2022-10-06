@@ -68,9 +68,6 @@ const Input: FC<InputProps> = forwardRef((props) => {
     ${backgroundFinal ? backgroundFinal : null};
   `;
 
-  // let propsCopy = JSON.parse(JSON.stringify(props));
-  // if (propsCopy.withIcon) delete propsCopy.withIcon;
-
   if (withIcon) {
     return (
       <div className="input-with-icon full-width">
@@ -80,7 +77,7 @@ const Input: FC<InputProps> = forwardRef((props) => {
           className={`${className ? "input " + className : " input"}`}
           style={style || {}}
         ></InputTag>
-        {withIcon}
+        <span className="">{withIcon}</span>
       </div>
     );
   }
