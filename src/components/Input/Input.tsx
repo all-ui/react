@@ -17,20 +17,20 @@ const Input: FC<InputProps> = forwardRef((props) => {
 
     let prop: any = props[camel];
 
-    let final: string = camel !== "fontSize" ? `${kebab}: ${theme[camel]}` : "";
+    let final: string = "";
     if (prop) final = `${kebab}: ${prop}`;
 
     return final;
   };
 
   // ---------FONT COLOR------------------//
-  let fontColorFinal: string = `color: #000`;
+  let fontColorFinal: string = "";
 
   if (fontColor)
     fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
 
   // ---------BACKGROUND------------------//
-  let backgroundFinal: string = "#fff";
+  let backgroundFinal: string = "";
 
   if (background && background.type === "color") {
     backgroundFinal = `background: ${
@@ -57,6 +57,12 @@ const Input: FC<InputProps> = forwardRef((props) => {
     ${getCommonStyles("font weight") || null};
     ${getCommonStyles("line height") || null};
     ${getCommonStyles("letter spacing") || null};
+
+    ${getCommonStyles("padding") || null};
+    ${getCommonStyles("border") || null};
+    ${getCommonStyles("border radius") || null};
+    ${getCommonStyles("transition") || null};
+
     ${fontColorFinal ? fontColorFinal : null};
     ${backgroundFinal ? backgroundFinal : null};
   `;

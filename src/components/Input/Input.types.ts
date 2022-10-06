@@ -14,4 +14,9 @@ export interface InputProps extends PropsBase {
   lineHeight?: string;
   fontColor?: string;
   fontSize?: string;
+
+  padding?: string;
+  border?: string;
+  borderRadius?: string;
+  transition?: string;
 }
