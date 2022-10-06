@@ -1,13 +1,13 @@
 import React, { FC, useContext, forwardRef } from "react";
 import styled from "styled-components";
-import { ButtonRawProps } from "./ButtonRaw.types";
-import { useTheme } from "../AllUiProvider";
+import _ from "lodash";
+import { InputProps } from "./Input.types";
+import { AllUiContext, useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
-import _ from "lodash";
 
-const ButtonRaw: FC<ButtonRawProps> = forwardRef((props) => {
-  const { children, className, style, fontColor, background } = props;
+const Input: FC<InputProps> = forwardRef((props) => {
+  const { children, className, style, type, background, fontColor } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
@@ -24,38 +24,13 @@ const ButtonRaw: FC<ButtonRawProps> = forwardRef((props) => {
   };
 
   // ---------FONT COLOR------------------//
-  let fontColorFinal: string = `color: ${
-    theme.colors[theme.fontColor] || theme.fontColor
-  }`;
+  let fontColorFinal: string = `color: #000`;
 
   if (fontColor)
     fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
 
   // ---------BACKGROUND------------------//
   let backgroundFinal: string = "#fff";
-  if (theme.background.type === "gradient") {
-    let gradient: any =
-      theme[theme.background.type + "s"][theme.background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  } else {
-    backgroundFinal =
-      theme[theme.background.type + "s"][theme.background.which];
-  }
-
-  if (theme.background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[theme.background.type + "s"][theme.background.which] ||
-      theme.background.which
-    }`;
-  }
 
   if (background && background.type === "color") {
     backgroundFinal = `background: ${
@@ -76,7 +51,7 @@ const ButtonRaw: FC<ButtonRawProps> = forwardRef((props) => {
     backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
   }
 
-  const Button = styled.button`
+  const InputTag = styled.input`
     ${getCommonStyles("font family") || null};
     ${getCommonStyles("font size") || null};
     ${getCommonStyles("font weight") || null};
@@ -85,15 +60,17 @@ const ButtonRaw: FC<ButtonRawProps> = forwardRef((props) => {
     ${fontColorFinal ? fontColorFinal : null};
     ${backgroundFinal ? backgroundFinal : null};
   `;
+
   return (
-    <Button
+    <InputTag
       {...props}
-      className={`${className ? "btn " + className : "btn"}`}
+      type={type}
+      className={`${className ? "input " + className : " input"}`}
       style={style || {}}
     >
       {children}
-    </Button>
+    </InputTag>
   );
 });
 
-export default AllUiCssHOC(ButtonRaw);
+export default AllUiCssHOC(Input);

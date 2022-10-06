@@ -2,14 +2,14 @@ import React, { FC, useContext, forwardRef } from "react";
 import styled from "styled-components";
 import _ from "lodash";
 import { HeadingProps } from "./Heading.types";
-import { AllUiContext } from "../AllUiProvider";
+import { useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 
 const Heading: FC<HeadingProps> = forwardRef((props) => {
   const { children, className, style, as, background, fontColor } = props;
-  const context = useContext(AllUiContext);
-  let theme: Theme = context?.theme || defaultTheme;
+  const { theme: themeOrg, setTheme } = useTheme();
+  let theme: Theme = themeOrg || defaultTheme;
 
   let heading = styled.h1;
 

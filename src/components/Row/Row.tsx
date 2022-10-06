@@ -11,11 +11,7 @@ const Row: FC<RowProps> = forwardRef((props) => {
 
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
-  useEffect(() => {
-    if (background) {
-      //setTheme({ background });
-    }
-  }, []);
+
   // ---------BACKGROUND------------------//
   let backgroundFinal: string = "";
 

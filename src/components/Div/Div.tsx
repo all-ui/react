@@ -1,14 +1,14 @@
 import React, { FC, useContext, forwardRef } from "react";
 import styled from "styled-components";
 import { DivProps } from "./Div.types";
-import { AllUiContext } from "../AllUiProvider";
+import { useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 
 const Div: FC<DivProps> = forwardRef((props) => {
   const { children, className, style, background } = props;
-  const context = useContext(AllUiContext);
-  let theme: Theme = context?.theme || defaultTheme;
+  const { theme: themeOrg, setTheme } = useTheme();
+  let theme: Theme = themeOrg || defaultTheme;
 
   // ---------BACKGROUND------------------//
   let backgroundFinal: string = "";
