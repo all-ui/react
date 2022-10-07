@@ -5,85 +5,46 @@ import { useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import _ from "lodash";
+import * as Utils from "../Utils";
 
 const ButtonRaw: FC<ButtonRawProps> = forwardRef((props) => {
-  const { children, className, style, fontColor, background } = props;
+  const {
+    children,
+    className,
+    style,
+    type,
+    background,
+    hover,
+    focus,
+    fontColor,
+    transition,
+    fontFamily,
+    fontWeight,
+    lineHeight,
+    letterSpacing,
+    padding,
+    border,
+    borderRadius,
+  } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const getCommonStyles = (which: string) => {
-    let kebab: string = _.kebabCase(which);
-    let camel: string = _.camelCase(which);
-
-    let prop: any = props[camel];
-
-    let final: string = camel !== "fontSize" ? `${kebab}: ${theme[camel]}` : "";
-    if (prop) final = `${kebab}: ${prop}`;
-
-    return final;
-  };
-
-  // ---------FONT COLOR------------------//
-  let fontColorFinal: string = `color: ${
-    theme.colors[theme.fontColor] || theme.fontColor
-  }`;
-
-  if (fontColor)
-    fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
-
-  // ---------BACKGROUND------------------//
-  let backgroundFinal: string = "#fff";
-  if (theme.background.type === "gradient") {
-    let gradient: any =
-      theme[theme.background.type + "s"][theme.background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  } else {
-    backgroundFinal =
-      theme[theme.background.type + "s"][theme.background.which];
-  }
-
-  if (theme.background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[theme.background.type + "s"][theme.background.which] ||
-      theme.background.which
-    }`;
-  }
-
-  if (background && background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[background.type + "s"][background.which] || background.which
-    }`;
-  }
-
-  if (background && background.type === "gradient") {
-    let gradient: any = theme[background.type + "s"][background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  }
-
   const Button = styled.button`
-    ${getCommonStyles("font family") || null};
-    ${getCommonStyles("font size") || null};
-    ${getCommonStyles("font weight") || null};
-    ${getCommonStyles("line height") || null};
-    ${getCommonStyles("letter spacing") || null};
-    ${fontColorFinal ? fontColorFinal : null};
-    ${backgroundFinal ? backgroundFinal : null};
+    ${Utils.getCommonStyles("font-family", fontFamily, theme) || null};
+    ${Utils.getCommonStyles("font-size", fontFamily, theme) || null};
+    ${Utils.getCommonStyles("font-weight", fontWeight, theme) || null};
+    ${Utils.getCommonStyles("line-height", lineHeight, theme) || null};
+    ${Utils.getCommonStyles("letter-spacing", letterSpacing, theme) || null};
+
+    ${Utils.getCommonStyles("padding", padding, theme) || null};
+    ${Utils.getCommonStyles("border", border, theme) || null};
+    ${Utils.getCommonStyles("border-radius", borderRadius, theme) || null};
+    ${Utils.getTransition(transition, theme) || null};
+
+    ${Utils.getBackground(background, theme) || null};
+    ${Utils.getHoverOrFocus("hover", hover, theme) || null};
+    ${Utils.getHoverOrFocus("focus", focus, theme) || null};
+    ${Utils.getFontColor(fontColor, theme) || null}
   `;
   return (
     <Button
