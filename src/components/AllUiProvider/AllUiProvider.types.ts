@@ -1,42 +1,60 @@
+export type ThemePropValueType =
+  | string
+  | number
+  | boolean
+  | {
+      [key: string]: string | { [key: string]: any } | any[] | number | boolean;
+    }
+  | object[]
+  | string[]
+  | number[]
+  | undefined;
+
 export interface BaseTheme {
-  [key: string]: any;
+  colors?: ThemePropValueType;
+  background?: ThemePropValueType;
+  fontFamily?: ThemePropValueType;
+  fontColor?: ThemePropValueType;
+  fontSize?: ThemePropValueType;
+  fontWeight?: ThemePropValueType;
+  lineHeight?: ThemePropValueType;
+  letterSpacing?: ThemePropValueType;
+  headings?: ThemePropValueType;
+  gradients?: ThemePropValueType;
+  shadows?: ThemePropValueType;
+  transitions?: ThemePropValueType;
 }
 
 export interface Theme extends BaseTheme {
   colors: { [key: string]: string };
-  background: { type: string; which: string };
+  background: { type: "color" | "gradient"; which: string };
   fontFamily: string[];
   fontColor: string;
   fontSize: string;
-  fontWeight: string;
+  fontWeight: "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
   lineHeight: string;
   letterSpacing: string;
-  headings: { [key: string]: { [key: string]: string } };
+  headings: {
+    [key in "h1" | "h2" | "h3" | "h4" | "h5" | "h6"]: {
+      [key: string]: string;
+    };
+  };
   gradients: {
-    [key: string]: { [key: string]: string | { which: string; op: string }[] };
+    [key: string]: {
+      [key in "type" | "deg" | "colors"]:
+        | string
+        | { which: string; op: string }[];
+    };
   };
+  shadows: { [key: string]: string };
+  transitions: { [key: string]: string };
 }
 
-export interface UserTheme extends BaseTheme {
-  colors?: { [key: string]: string };
-  background?: { type: string; which: string };
-  fontFamily?: string[];
-  fontColor?: string;
-  fontSize?: string;
-  fontWeight?: string;
-  lineHeight?: string;
-  letterSpacing?: string;
-  headings?: { [key: string]: { [key: string]: string } };
-  gradients?: {
-    [key: string]: { [key: string]: string | { which: string; op: string }[] };
-  };
-}
-
-export type SetTheme = (theme: UserTheme) => void;
+export type SetTheme = (theme: BaseTheme) => void;
 
 export type AllUiProviderProps = {
   children: React.ReactNode;
-  myTheme?: UserTheme | undefined;
+  myTheme?: BaseTheme | undefined;
 };
 
 export const defaultTheme: Theme = {

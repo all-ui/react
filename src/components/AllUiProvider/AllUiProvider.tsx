@@ -2,7 +2,7 @@ import * as React from "react";
 import _ from "lodash";
 import {
   Theme,
-  UserTheme,
+  BaseTheme,
   SetTheme,
   AllUiProviderProps,
   defaultTheme,
@@ -23,7 +23,7 @@ const AllUiProvider = ({ children, myTheme }: AllUiProviderProps) => {
 
   const [theme, setTheme] = React.useState(_.merge(defaultThemeCopy, myTheme));
 
-  const updateTheme: SetTheme = (myTheme: UserTheme) => {
+  const updateTheme: SetTheme = (myTheme: BaseTheme) => {
     setTheme({ ...theme, ..._.merge(theme, myTheme) });
   };
   // NOTE: you *might* need to memoize this value
