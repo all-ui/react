@@ -1,12 +1,12 @@
 import React, { FC, useContext, forwardRef } from "react";
 import styled from "styled-components";
 import _ from "lodash";
-import { InputProps } from "./Input.types";
+import { IconProps } from "./Icon.types";
 import { AllUiContext, useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 
-const Input: FC<InputProps> = forwardRef((props) => {
+const Icon: FC<IconProps> = forwardRef((props) => {
   const {
     className,
     style,
@@ -15,7 +15,6 @@ const Input: FC<InputProps> = forwardRef((props) => {
     hover,
     focus,
     fontColor,
-    withIcon,
     transition,
     fontFamily,
     fontWeight,
@@ -102,7 +101,7 @@ const Input: FC<InputProps> = forwardRef((props) => {
     getHoverOrFocus("hover", hover)
   );
 
-  const InputTag = styled.input`
+  const IconTag = styled.i`
     ${getCommonStyles("font-family", fontFamily) || null};
     ${getCommonStyles("font-size", fontFamily) || null};
     ${getCommonStyles("font-weight", fontWeight) || null};
@@ -120,28 +119,13 @@ const Input: FC<InputProps> = forwardRef((props) => {
     ${getFontColor(fontColor) || null}
   `;
 
-  if (withIcon) {
-    return (
-      <div className="input-with-icon full-width">
-        <InputTag
-          {...props}
-          type={type}
-          className={`${className ? "input " + className : " input"}`}
-          style={style || {}}
-        ></InputTag>
-        <span className="">{withIcon}</span>
-      </div>
-    );
-  }
-
   return (
-    <InputTag
+    <IconTag
       {...props}
-      type={type}
-      className={`${className ? "input " + className : " input"}`}
+      className={`${className ? className : ""}`}
       style={style || {}}
     />
   );
 });
 
-export default AllUiCssHOC(Input);
+export default AllUiCssHOC(Icon);

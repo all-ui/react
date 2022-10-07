@@ -2,7 +2,7 @@ export interface PropsBase {
   [key: string]: any;
 }
 
-export interface InputProps extends PropsBase {
+export interface IconProps extends PropsBase {
   className?: string;
   style?: Object;
   background?: { type: "gradient" | "color"; which: string };
@@ -20,6 +20,4 @@ export interface InputProps extends PropsBase {
   border?: string;
   borderRadius?: string;
   transition?: string;
-
-  withIcon?: React.ReactNode;
 }
