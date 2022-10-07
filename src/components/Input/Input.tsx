@@ -17,18 +17,22 @@ const Input: FC<InputProps> = forwardRef((props) => {
     focus,
     fontColor,
     withIcon,
+    transition,
+    fontFamily,
+    fontSize,
+    fontWeight,
+    lineHeight,
+    letterSpacing,
+    padding,
+    border,
+    borderRadius,
   } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const getCommonStyles = (which: string) => {
-    let kebab: string = _.kebabCase(which);
-    let camel: string = _.camelCase(which);
-
-    let prop: any = props[camel];
-
+  const getCommonStyles = (which: string, prop: any) => {
     let final: string = "";
-    if (prop) final = `${kebab}: ${prop}`;
+    if (prop) final = `${which}: ${prop}`;
 
     return final;
   };
@@ -57,6 +61,23 @@ const Input: FC<InputProps> = forwardRef((props) => {
     return backgroundFinal;
   };
 
+  const getShadow = (shadow: string) => {
+    return theme.shadows[shadow];
+  };
+
+  const getTransition = (transition: any) => {
+    return theme.transitions[transition];
+  };
+
+  const getFontColor = (fontColor: any) => {
+    let fontColorFinal: string = "";
+
+    if (fontColor)
+      fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
+
+    return fontColorFinal;
+  };
+
   const getHoverOrFocus = (which: string, prop: any) => {
     let styleFinal: string = "";
 
@@ -66,38 +87,39 @@ const Input: FC<InputProps> = forwardRef((props) => {
         styleFinal += `${getBackground(prop.background)}; `;
       }
       if (prop.shadow) {
-        styleFinal += `${theme.shadows[prop.shadow]}; `;
+        styleFinal += `${getShadow(prop.shadow)}; `;
       }
+      _.keys(prop).map((key: string) => {
+        if (!["background", "shadow"].includes(key)) {
+          styleFinal += `${getCommonStyles(_.kebabCase(key), prop[key])}; `;
+        }
+      });
       styleFinal += " }";
     }
     return styleFinal;
   };
 
-  // ---------FONT COLOR------------------//
-  let fontColorFinal: string = "";
-
-  if (fontColor)
-    fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
-
-  console.log("hoverFinal", getHoverOrFocus("focus", focus), theme);
+  console.log(
+    "getHoverOrFocus('hover', hover)",
+    getHoverOrFocus("hover", hover)
+  );
 
   const InputTag = styled.input`
-    ${getCommonStyles("font family") || null};
-    ${getCommonStyles("font size") || null};
-    ${getCommonStyles("font weight") || null};
-    ${getCommonStyles("line height") || null};
-    ${getCommonStyles("letter spacing") || null};
+    ${getCommonStyles("font-family", fontFamily) || null};
+    ${getCommonStyles("font-size", fontFamily) || null};
+    ${getCommonStyles("font-weight", fontWeight) || null};
+    ${getCommonStyles("line-height", lineHeight) || null};
+    ${getCommonStyles("letter-spacing", letterSpacing) || null};
 
-    ${getCommonStyles("padding") || null};
-    ${getCommonStyles("border") || null};
-    ${getCommonStyles("border radius") || null};
-    ${getCommonStyles("transition") || null};
+    ${getCommonStyles("padding", padding) || null};
+    ${getCommonStyles("border", border) || null};
+    ${getCommonStyles("border-radius", borderRadius) || null};
+    ${getTransition(transition) || null};
 
     ${getBackground(background) || null};
     ${getHoverOrFocus("hover", hover) || null};
     ${getHoverOrFocus("focus", focus) || null};
-
-    ${fontColorFinal ? fontColorFinal : null};
+    ${getFontColor(fontColor) || null}
   `;
 
   if (withIcon) {
