@@ -7,8 +7,17 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 
 const Input: FC<InputProps> = forwardRef((props) => {
-  const { children, className, style, type, background, fontColor, withIcon } =
-    props;
+  const {
+    children,
+    className,
+    style,
+    type,
+    background,
+    hover,
+    focus,
+    fontColor,
+    withIcon,
+  } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
@@ -24,33 +33,53 @@ const Input: FC<InputProps> = forwardRef((props) => {
     return final;
   };
 
+  const getBackground = (background: any) => {
+    let backgroundFinal: string = "";
+
+    if (background && background.type === "color") {
+      backgroundFinal = `background: ${
+        theme[background.type + "s"][background.which] || background.which
+      }`;
+    }
+
+    if (background && background.type === "gradient") {
+      let gradient: any = theme[background.type + "s"][background.which];
+      let colors: string = "";
+      gradient.colors.map(
+        (color: { which: string; op: string }, index: number) => {
+          colors += `${theme.colors[color.which] || color.which} ${color.op}${
+            index === gradient.colors.length - 1 ? "" : ", "
+          }`;
+        }
+      );
+      backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
+    }
+    return backgroundFinal;
+  };
+
+  const getHoverOrFocus = (which: string, prop: any) => {
+    let styleFinal: string = "";
+
+    if (prop && !_.isEmpty(prop)) {
+      styleFinal = `&:${which} {`;
+      if (prop.background) {
+        styleFinal += `${getBackground(prop.background)}; `;
+      }
+      if (prop.shadow) {
+        styleFinal += `${theme.shadows[prop.shadow]}; `;
+      }
+      styleFinal += " }";
+    }
+    return styleFinal;
+  };
+
   // ---------FONT COLOR------------------//
   let fontColorFinal: string = "";
 
   if (fontColor)
     fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
 
-  // ---------BACKGROUND------------------//
-  let backgroundFinal: string = "";
-
-  if (background && background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[background.type + "s"][background.which] || background.which
-    }`;
-  }
-
-  if (background && background.type === "gradient") {
-    let gradient: any = theme[background.type + "s"][background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  }
+  console.log("hoverFinal", getHoverOrFocus("focus", focus), theme);
 
   const InputTag = styled.input`
     ${getCommonStyles("font family") || null};
@@ -64,8 +93,11 @@ const Input: FC<InputProps> = forwardRef((props) => {
     ${getCommonStyles("border radius") || null};
     ${getCommonStyles("transition") || null};
 
+    ${getBackground(background) || null};
+    ${getHoverOrFocus("hover", hover) || null};
+    ${getHoverOrFocus("focus", focus) || null};
+
     ${fontColorFinal ? fontColorFinal : null};
-    ${backgroundFinal ? backgroundFinal : null};
   `;
 
   if (withIcon) {

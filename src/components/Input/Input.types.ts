@@ -7,6 +7,8 @@ export interface InputProps extends PropsBase {
   className?: string;
   style?: Object;
   background?: { type: "gradient" | "color"; which: string };
+  hover?: { [key: string]: any };
+  focus?: { [key: string]: any };
   type: "text" | "email" | "password" | "tel" | "number";
   fontFamily?: string;
   letterSpacing?: string;
