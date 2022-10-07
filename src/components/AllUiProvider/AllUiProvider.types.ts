@@ -10,7 +10,11 @@ export type ThemePropValueType =
   | number[]
   | undefined;
 
-export interface BaseTheme {
+interface RootTheme {
+  [key: string]: any;
+}
+
+export interface BaseTheme extends RootTheme {
   colors?: ThemePropValueType;
   background?: ThemePropValueType;
   fontFamily?: ThemePropValueType;
