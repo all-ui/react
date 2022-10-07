@@ -4,36 +4,46 @@ import { ContainerFluidProps } from "./ContainerFluid.types";
 import { useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
+import * as Utils from "../Utils";
 
 const ContainerFluid: FC<ContainerFluidProps> = forwardRef((props) => {
-  const { children, className, style, background } = props;
+  const {
+    children,
+    className,
+    style,
+    type,
+    background,
+    hover,
+    focus,
+    fontColor,
+    transition,
+    fontFamily,
+    fontWeight,
+    lineHeight,
+    letterSpacing,
+    padding,
+    border,
+    borderRadius,
+  } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  // ---------BACKGROUND------------------//
-  let backgroundFinal: string = "";
-
-  if (background && background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[background.type + "s"][background.which] || background.which
-    }`;
-  }
-
-  if (background && background.type === "gradient") {
-    let gradient: any = theme[background.type + "s"][background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  }
-  console.log("backgroundFinal", backgroundFinal);
   const Div = styled.div`
-    ${backgroundFinal ? backgroundFinal : null};
+    ${Utils.getCommonStyles("font-family", fontFamily, theme) || null};
+    ${Utils.getCommonStyles("font-size", fontFamily, theme) || null};
+    ${Utils.getCommonStyles("font-weight", fontWeight, theme) || null};
+    ${Utils.getCommonStyles("line-height", lineHeight, theme) || null};
+    ${Utils.getCommonStyles("letter-spacing", letterSpacing, theme) || null};
+
+    ${Utils.getCommonStyles("padding", padding, theme) || null};
+    ${Utils.getCommonStyles("border", border, theme) || null};
+    ${Utils.getCommonStyles("border-radius", borderRadius, theme) || null};
+    ${Utils.getTransition(transition, theme) || null};
+
+    ${Utils.getBackground(background, theme) || null};
+    ${Utils.getHoverOrFocus("hover", hover, theme) || null};
+    ${Utils.getHoverOrFocus("focus", focus, theme) || null};
+    ${Utils.getFontColor(fontColor, theme) || null}
   `;
   return (
     <Div

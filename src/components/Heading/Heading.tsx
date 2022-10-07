@@ -5,9 +5,29 @@ import { HeadingProps } from "./Heading.types";
 import { useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
+import * as Utils from "../Utils";
 
 const Heading: FC<HeadingProps> = forwardRef((props) => {
-  const { children, className, style, as, background, fontColor } = props;
+  const {
+    children,
+    className,
+    style,
+    type,
+    background,
+    hover,
+    focus,
+    fontColor,
+    transition,
+    fontFamily,
+    fontWeight,
+    lineHeight,
+    letterSpacing,
+    padding,
+    border,
+    borderRadius,
+    as,
+    fontSize,
+  } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
@@ -19,64 +39,56 @@ const Heading: FC<HeadingProps> = forwardRef((props) => {
   if (as === "h5") heading = styled.h5;
   if (as === "h6") heading = styled.h6;
 
-  const getCommonStyles = (which: string) => {
-    let kebab: string = _.kebabCase(which);
-    let camel: string = _.camelCase(which);
+  // const getCommonStyles = (which: string) => {
+  //   let kebab: string = _.kebabCase(which);
+  //   let camel: string = _.camelCase(which);
 
-    let prop: any = props[camel];
+  //   let prop: any = props[camel];
 
-    let final: string = camel !== "fontSize" ? `${kebab}: ${theme[camel]}` : "";
-    if (theme.headings[as][camel]) {
-      final = `${kebab}: ${theme.headings[as][camel]}`;
+  //   let final: string = camel !== "fontSize" ? `${kebab}: ${theme[camel]}` : "";
+  //   if (theme.headings[as][camel]) {
+  //     final = `${kebab}: ${theme.headings[as][camel]}`;
+  //   }
+  //   if (prop) final = `${kebab}: ${prop}`;
+
+  //   return final;
+  // };
+
+  const getCommonStyles = (which: string, prop: any) => {
+    let final: string = "";
+    if (theme.headings[as][_.camelCase(which)]) {
+      final = `${which}: ${theme.headings[as][_.camelCase(which)]}`;
     }
-    if (prop) final = `${kebab}: ${prop}`;
+    if (prop) final = `${which}: ${prop}`;
 
     return final;
   };
 
-  // ---------FONT COLOR------------------//
-  let fontColorFinal: string = `color: ${
-    theme.colors[theme.fontColor] || theme.fontColor
-  }`;
-
-  if (theme.headings[as].fontColor) {
-    fontColorFinal = `color: ${
-      theme.colors[theme.headings[as].fontColor] || theme.headings[as].fontColor
+  const getFontColor = (fontColor: any) => {
+    let fontColorFinal: string = `color: ${
+      theme.colors[theme.fontColor] || theme.fontColor
     }`;
-  }
-  if (fontColor)
-    fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
 
-  // ---------BACKGROUND------------------//
-  let backgroundFinal: string = "#fff";
+    if (theme.headings[as].fontColor) {
+      fontColorFinal = `color: ${
+        theme.colors[theme.headings[as].fontColor] ||
+        theme.headings[as].fontColor
+      }`;
+    }
 
-  if (background && background.type === "color") {
-    backgroundFinal = `background: ${
-      theme[background.type + "s"][background.which] || background.which
-    }`;
-  }
-
-  if (background && background.type === "gradient") {
-    let gradient: any = theme[background.type + "s"][background.which];
-    let colors: string = "";
-    gradient.colors.map(
-      (color: { which: string; op: string }, index: number) => {
-        colors += `${theme.colors[color.which] || color.which} ${color.op}${
-          index === gradient.colors.length - 1 ? "" : ", "
-        }`;
-      }
-    );
-    backgroundFinal = `background-image: ${gradient.type}-gradient(${gradient.deg}deg, ${colors})`;
-  }
+    if (fontColor)
+      fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
+    return fontColorFinal;
+  };
 
   const HeadingTag = heading`
-    ${getCommonStyles("font family") || null};
-    ${getCommonStyles("font size") || null};
-    ${getCommonStyles("font weight") || null};
-    ${getCommonStyles("line height") || null};
-    ${getCommonStyles("letter spacing") || null};
-    ${fontColorFinal ? fontColorFinal : null};
-    ${backgroundFinal ? backgroundFinal : null};
+    ${getCommonStyles("font-family", fontFamily) || null};
+    ${getCommonStyles("font-size", fontSize) || null};
+    ${getCommonStyles("font-weight", fontWeight) || null};
+    ${getCommonStyles("line-height", lineHeight) || null};
+    ${getCommonStyles("letter-spacing", letterSpacing) || null};
+    ${getFontColor(fontColor) || null};
+    ${Utils.getBackground(background, theme) || null};
   `;
   let propsCopy = JSON.parse(JSON.stringify(props));
   delete propsCopy.as;

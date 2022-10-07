@@ -96,11 +96,6 @@ const Icon: FC<IconProps> = forwardRef((props) => {
     return styleFinal;
   };
 
-  console.log(
-    "getHoverOrFocus('hover', hover)",
-    getHoverOrFocus("hover", hover)
-  );
-
   const IconTag = styled.i`
     ${getCommonStyles("font-family", fontFamily) || null};
     ${getCommonStyles("font-size", fontFamily) || null};
