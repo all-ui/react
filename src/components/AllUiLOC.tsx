@@ -1,17 +1,13 @@
 import React, { FC, forwardRef } from "react";
 import "@allui/css/dist/allui.css";
-import { AllUiHOCProps } from "./AllUiHOC.types";
 
 import styled, { css } from "styled-components";
 import { useTheme } from "./AllUiProvider";
-import {
-  defaultTheme,
-  Theme,
-  CommonComponentProps,
-} from "./AllUiProvider/AllUiProvider.types";
+import { defaultTheme, Theme } from "./AllUiProvider/AllUiProvider.types";
 import * as Utils from "./Utils";
+import { AllUiLOCProps } from "./AllUiLOC.types";
 
-const AllUiCommon: FC<CommonComponentProps> = (props: CommonComponentProps) => {
+const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
   const {
     children,
     className,
@@ -43,6 +39,7 @@ const AllUiCommon: FC<CommonComponentProps> = (props: CommonComponentProps) => {
     ${
       Utils.getInheritableStyles("letter-spacing", letterSpacing, theme) || null
     };
+    ${Utils.getFontColor2(fontColor, theme) || null};
 
     ${Utils.getCommonStyles("padding", padding, theme) || null};
     ${Utils.getCommonStyles("border", border, theme) || null};
@@ -52,7 +49,7 @@ const AllUiCommon: FC<CommonComponentProps> = (props: CommonComponentProps) => {
     ${Utils.getBackground(background, theme) || null};
     ${Utils.getHoverOrFocus("hover", hover, theme) || null};
     ${Utils.getHoverOrFocus("focus", focus, theme) || null};
-    ${Utils.getFontColor(fontColor, theme) || null};
+    
   `;
 
   return (

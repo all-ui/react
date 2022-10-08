@@ -1,27 +1,24 @@
 import React, { FC, forwardRef } from "react";
 import styled from "styled-components";
 import { useTheme } from "../AllUiProvider";
-import {
-  defaultTheme,
-  Theme,
-  ComponentProps,
-} from "../AllUiProvider/AllUiProvider.types";
+import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
-import AllUiCommon from "../AllUiCommon";
+import AllUiLOC from "../AllUiLOC";
+import { ContainerFluidProps } from "./ContainerFluid.types";
 
-const ContainerFluid: FC<ComponentProps> = forwardRef(
-  (props: ComponentProps) => {
+const ContainerFluid: FC<ContainerFluidProps> = forwardRef(
+  (props: ContainerFluidProps) => {
     const { theme: themeOrg, setTheme } = useTheme();
     let theme: Theme = themeOrg || defaultTheme;
 
     const Div = styled.div;
     return (
-      <AllUiCommon
+      <AllUiLOC
         {...props}
         tag={Div}
         theme={theme}
         setTheme={setTheme}
-      ></AllUiCommon>
+      ></AllUiLOC>
     );
   }
 );

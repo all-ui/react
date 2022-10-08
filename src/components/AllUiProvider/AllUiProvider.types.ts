@@ -1,4 +1,4 @@
-interface Root {
+export interface Root {
   [key: string]: any;
 }
 
@@ -23,7 +23,7 @@ export interface BaseTheme extends Root {
   fontWeight?: ThemePropValueType;
   lineHeight?: ThemePropValueType;
   letterSpacing?: ThemePropValueType;
-  headings?: ThemePropValueType;
+  //headings?: ThemePropValueType;
   gradients?: ThemePropValueType;
   shadows?: ThemePropValueType;
   transitions?: ThemePropValueType;
@@ -38,11 +38,11 @@ export interface Theme extends BaseTheme {
   fontWeight: "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
   lineHeight: string;
   letterSpacing: string;
-  headings: {
-    [key in "h1" | "h2" | "h3" | "h4" | "h5" | "h6"]: {
-      [key: string]: string;
-    };
-  };
+  // headings: {
+  //   [key in "h1" | "h2" | "h3" | "h4" | "h5" | "h6"]: {
+  //     [key: string]: string;
+  //   };
+  // };
   gradients: {
     [key: string]: {
       [key in "type" | "deg" | "colors"]:
@@ -87,32 +87,32 @@ export const defaultTheme: Theme = {
   fontWeight: "400",
   lineHeight: "1.5",
   letterSpacing: "normal",
-  headings: {
-    h1: {
-      fontWeight: "500",
-      lineHeight: "1.2",
-    },
-    h2: {
-      fontWeight: "500",
-      lineHeight: "1.2",
-    },
-    h3: {
-      fontWeight: "500",
-      lineHeight: "1.2",
-    },
-    h4: {
-      fontWeight: "500",
-      lineHeight: "1.2",
-    },
-    h5: {
-      fontWeight: "500",
-      lineHeight: "1.2",
-    },
-    h6: {
-      fontWeight: "500",
-      lineHeight: "1.2",
-    },
-  },
+  // headings: {
+  //   h1: {
+  //     fontWeight: "500",
+  //     lineHeight: "1.2",
+  //   },
+  //   h2: {
+  //     fontWeight: "500",
+  //     lineHeight: "1.2",
+  //   },
+  //   h3: {
+  //     fontWeight: "500",
+  //     lineHeight: "1.2",
+  //   },
+  //   h4: {
+  //     fontWeight: "500",
+  //     lineHeight: "1.2",
+  //   },
+  //   h5: {
+  //     fontWeight: "500",
+  //     lineHeight: "1.2",
+  //   },
+  //   h6: {
+  //     fontWeight: "500",
+  //     lineHeight: "1.2",
+  //   },
+  // },
   gradients: {
     one: {
       type: "linear",
@@ -156,7 +156,7 @@ export interface ComponentProps extends Root {
   transition?: string;
 }
 
-export interface CommonComponentProps extends ComponentProps {
+export interface LOCProps extends ComponentProps {
   tag: any;
   theme: Theme;
   setTheme: SetTheme;
