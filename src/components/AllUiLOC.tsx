@@ -54,7 +54,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     ${Utils.getHoverOrFocus("focus", focus, theme) || null};
     
   `;
-  console.log("className", className, baseClassNames);
+
   return (
     <Tag
       {...props}

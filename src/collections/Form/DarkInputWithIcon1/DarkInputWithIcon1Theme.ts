@@ -3,7 +3,6 @@ export default {
     one: "#111",
     two: "#ccc",
     three: "#000",
-    four: "#7e7e7e",
   },
   shadows: {
     one: "box-shadow: 0 0 0 0.2rem rgb(59 59 59 / 40%)",

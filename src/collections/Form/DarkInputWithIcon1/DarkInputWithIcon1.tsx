@@ -23,15 +23,6 @@ const DarkInputWithIcon1 = (props: { [key: string]: any }) => {
         transition="one"
         borderRadius=".8rem"
         padding="0.5rem 1rem 0.5rem 2.5rem"
-        withIcon={
-          <Icon
-            className="ai ai-lock-fill input-icon"
-            fontColor="four"
-            padding="0.5rem .65rem"
-            fontSize="1rem"
-            borderRadius=".8rem 0 0 .8rem"
-          />
-        }
       />
     </AllUiProvider>
   );
