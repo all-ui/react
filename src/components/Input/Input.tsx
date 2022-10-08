@@ -11,6 +11,20 @@ const Input: FC<InputProps> = forwardRef((props: InputProps) => {
   let theme: Theme = themeOrg || defaultTheme;
 
   const InputTag = styled.input;
+  if (props.withIcon) {
+    return (
+      <div className="input-with-icon full-width">
+        <AllUiLOC
+          {...props}
+          tag={InputTag}
+          theme={theme}
+          setTheme={setTheme}
+          baseClassNames="input"
+        ></AllUiLOC>
+        <span className="">{props.withIcon}</span>
+      </div>
+    );
+  }
   return (
     <AllUiLOC
       {...props}
