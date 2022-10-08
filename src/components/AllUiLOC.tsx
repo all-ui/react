@@ -32,18 +32,19 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     setTheme,
     baseClassNames,
   } = props;
-
+  // Font Szie needs to be rethinked over whether to be inherited or common styled
   const Tag = tag`
     ${Utils.getInheritableStyles("font-family", fontFamily, theme) || null};
-    ${Utils.getInheritableStyles("font-size", fontSize, theme) || null};
+    
     ${Utils.getInheritableStyles("font-weight", fontWeight, theme) || null};
     ${Utils.getInheritableStyles("line-height", lineHeight, theme) || null};
     ${
       Utils.getInheritableStyles("letter-spacing", letterSpacing, theme) || null
     };
-    ${Utils.getFontColor2(fontColor, theme) || null};
+    ${Utils.getFontColor(fontColor, theme) || null};
 
     ${Utils.getCommonStyles("padding", padding, theme) || null};
+    ${Utils.getCommonStyles("font-size", fontSize, theme) || null};
     ${Utils.getCommonStyles("border", border, theme) || null};
     ${Utils.getCommonStyles("border-radius", borderRadius, theme) || null};
     ${Utils.getTransition(transition, theme) || null};

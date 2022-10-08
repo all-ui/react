@@ -40,7 +40,7 @@ export const getInheritableStyles = (
   return `${which}: ${prop || theme[_.camelCase(which)]}`;
 };
 
-export const getFontColor2 = (fontColor: any, theme: Theme) => {
+export const getFontColor = (fontColor: any, theme: Theme) => {
   let fontColorFinal: string = `color: ${
     theme.colors[theme.fontColor] || theme.fontColor
   }`;
@@ -57,15 +57,6 @@ export const getShadow = (shadow: string, theme: Theme) => {
 
 export const getTransition = (transition: any, theme: Theme) => {
   return theme.transitions[transition];
-};
-
-export const getFontColor = (fontColor: any, theme: Theme) => {
-  let fontColorFinal: string = "";
-
-  if (fontColor)
-    fontColorFinal = `color: ${theme.colors[fontColor] || fontColor}`;
-
-  return fontColorFinal;
 };
 
 export const getHoverOrFocus = (which: string, prop: any, theme: Theme) => {
