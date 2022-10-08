@@ -32,6 +32,14 @@ export const getCommonStyles = (which: string, prop: any, theme: Theme) => {
   return final;
 };
 
+export const getInheritableStyles = (
+  which: string,
+  prop: any,
+  theme: Theme
+) => {
+  return `${which}: ${prop || theme[_.camelCase(which)]}`;
+};
+
 export const getShadow = (shadow: string, theme: Theme) => {
   return theme.shadows[shadow];
 };

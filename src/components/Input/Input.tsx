@@ -46,7 +46,7 @@ const Input: FC<InputProps> = forwardRef((props) => {
     ${Utils.getHoverOrFocus("focus", focus, theme) || null};
     ${Utils.getFontColor(fontColor, theme) || null}
   `;
-
+  console.log("theme", theme);
   if (withIcon) {
     return (
       <div className="input-with-icon full-width">

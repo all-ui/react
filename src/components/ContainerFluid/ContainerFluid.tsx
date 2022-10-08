@@ -29,11 +29,12 @@ const ContainerFluid: FC<ContainerFluidProps> = forwardRef((props) => {
   let theme: Theme = themeOrg || defaultTheme;
 
   const Div = styled.div`
-    ${Utils.getCommonStyles("font-family", fontFamily, theme) || null};
-    ${Utils.getCommonStyles("font-size", fontFamily, theme) || null};
-    ${Utils.getCommonStyles("font-weight", fontWeight, theme) || null};
-    ${Utils.getCommonStyles("line-height", lineHeight, theme) || null};
-    ${Utils.getCommonStyles("letter-spacing", letterSpacing, theme) || null};
+    ${Utils.getInheritableStyles("font-family", fontFamily, theme) || null};
+    ${Utils.getInheritableStyles("font-size", fontFamily, theme) || null};
+    ${Utils.getInheritableStyles("font-weight", fontWeight, theme) || null};
+    ${Utils.getInheritableStyles("line-height", lineHeight, theme) || null};
+    ${Utils.getInheritableStyles("letter-spacing", letterSpacing, theme) ||
+    null};
 
     ${Utils.getCommonStyles("padding", padding, theme) || null};
     ${Utils.getCommonStyles("border", border, theme) || null};
