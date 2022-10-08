@@ -19,6 +19,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     fontColor,
     transition,
     fontFamily,
+    fontSize,
     fontWeight,
     lineHeight,
     letterSpacing,
@@ -29,11 +30,12 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     tag,
     theme,
     setTheme,
+    baseClassNames,
   } = props;
 
   const Tag = tag`
     ${Utils.getInheritableStyles("font-family", fontFamily, theme) || null};
-    ${Utils.getInheritableStyles("font-size", fontFamily, theme) || null};
+    ${Utils.getInheritableStyles("font-size", fontSize, theme) || null};
     ${Utils.getInheritableStyles("font-weight", fontWeight, theme) || null};
     ${Utils.getInheritableStyles("line-height", lineHeight, theme) || null};
     ${
@@ -51,12 +53,14 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     ${Utils.getHoverOrFocus("focus", focus, theme) || null};
     
   `;
-
+  console.log("className", className, baseClassNames);
   return (
     <Tag
       {...props}
       className={`${
-        className ? "container-fluid " + className : "container-fluid"
+        className
+          ? ((baseClassNames || " ") + " " + className).trim()
+          : (baseClassNames || " ").trim()
       }`}
       style={style || {}}
     >

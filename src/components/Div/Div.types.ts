@@ -1,21 +1,3 @@
-export interface DivProps {
-  children: React.ReactNode;
-  className?: string;
-  style?: Object;
-  background?: { type: "gradient" | "color"; which: string };
+import { ComponentProps } from "../AllUiProvider/AllUiProvider.types";
 
-  hover?: { [key: string]: any };
-  focus?: { [key: string]: any };
-  type: "text" | "email" | "password" | "tel" | "number";
-  fontFamily?: string;
-  letterSpacing?: string;
-  fontWeight?: string;
-  lineHeight?: string;
-  fontColor?: string;
-  fontSize?: string;
-
-  padding?: string;
-  border?: string;
-  borderRadius?: string;
-  transition?: string;
-}
+export interface DivProps extends ComponentProps {}

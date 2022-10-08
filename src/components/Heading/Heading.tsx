@@ -6,7 +6,7 @@ import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { HeadingProps } from "./Heading.types";
 
-const ContainerFluid: FC<HeadingProps> = forwardRef((props: HeadingProps) => {
+const Heading: FC<HeadingProps> = forwardRef((props: HeadingProps) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
@@ -27,4 +27,4 @@ const ContainerFluid: FC<HeadingProps> = forwardRef((props: HeadingProps) => {
   );
 });
 
-export default AllUiCssHOC(ContainerFluid);
+export default AllUiCssHOC(Heading);

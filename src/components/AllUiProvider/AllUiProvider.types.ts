@@ -160,4 +160,5 @@ export interface LOCProps extends ComponentProps {
   tag: any;
   theme: Theme;
   setTheme: SetTheme;
+  baseClassNames?: string;
 }

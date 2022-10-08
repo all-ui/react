@@ -18,6 +18,7 @@ const ContainerFluid: FC<ContainerFluidProps> = forwardRef(
         tag={Div}
         theme={theme}
         setTheme={setTheme}
+        baseClassNames="container-fluid"
       ></AllUiLOC>
     );
   }
