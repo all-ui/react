@@ -1,3 +1,7 @@
+interface Root {
+  [key: string]: any;
+}
+
 export type ThemePropValueType =
   | string
   | number
@@ -10,11 +14,7 @@ export type ThemePropValueType =
   | number[]
   | undefined;
 
-interface RootTheme {
-  [key: string]: any;
-}
-
-export interface BaseTheme extends RootTheme {
+export interface BaseTheme extends Root {
   colors?: ThemePropValueType;
   background?: ThemePropValueType;
   fontFamily?: ThemePropValueType;
@@ -132,3 +132,32 @@ export const defaultTheme: Theme = {
     two: "transition: all .5s",
   },
 };
+
+export interface ComponentProps extends Root {
+  children?: React.ReactNode;
+  className?: string;
+  style?: Object;
+  background?: { type: "gradient" | "color"; which: string };
+  as?: string | Root;
+
+  hover?: { [key: string]: any };
+  focus?: { [key: string]: any };
+  type?: "text" | "email" | "password" | "tel" | "number";
+  fontFamily?: string;
+  letterSpacing?: string;
+  fontWeight?: string;
+  lineHeight?: string;
+  fontColor?: string;
+  fontSize?: string;
+
+  padding?: string;
+  border?: string;
+  borderRadius?: string;
+  transition?: string;
+}
+
+export interface CommonComponentProps extends ComponentProps {
+  tag: any;
+  theme: Theme;
+  setTheme: SetTheme;
+}
