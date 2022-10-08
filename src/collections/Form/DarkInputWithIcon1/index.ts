@@ -1,1 +1,1 @@
-export { default } from "./DarkInput1";
+export { default } from "./DarkInputWithIcon1";

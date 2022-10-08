@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
-import DarkInput1Theme from "./DarkInput1Theme";
+import DarkInputWithIcon1Theme from "./DarkInputWithIcon1Theme";
 import { AllUiProvider, useTheme, Input, Icon } from "../../../components";
 
-const DarkInput1 = (props: { [key: string]: any }) => {
+const DarkInputWithIcon1 = (props: { [key: string]: any }) => {
   return (
-    <AllUiProvider myTheme={DarkInput1Theme}>
+    <AllUiProvider myTheme={DarkInputWithIcon1Theme}>
       <Input
         {...props}
-        background={{ type: "color", which: "two" }}
-        fontColor="seven"
+        background={{ type: "color", which: "one" }}
+        fontColor="two"
         letterSpacing="1px"
         hover={{
-          background: { type: "color", which: "eight" },
+          background: { type: "color", which: "three" },
           borderRadius: "3rem",
           shadow: "two",
         }}
         focus={{
-          background: { type: "color", which: "eight" },
+          background: { type: "color", which: "three" },
           shadow: "one",
           borderRadius: "3rem",
         }}
@@ -26,7 +26,7 @@ const DarkInput1 = (props: { [key: string]: any }) => {
         withIcon={
           <Icon
             className="ai ai-lock-fill input-icon"
-            fontColor="nine"
+            fontColor="four"
             padding="0.5rem .65rem"
             fontSize="1rem"
             borderRadius=".8rem 0 0 .8rem"
@@ -37,4 +37,4 @@ const DarkInput1 = (props: { [key: string]: any }) => {
   );
 };
 
-export default DarkInput1;
+export default DarkInputWithIcon1;
