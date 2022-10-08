@@ -14,11 +14,12 @@ const DarkButton1 = (props: { [key: string]: any }) => {
         <Div
           padding="0.3rem 1.5rem"
           borderRadius="1rem"
-          background={{ type: "color", which: "one" }}
+          background={{ type: "color", which: "three" }}
           fontColor="two"
           letterSpacing="1px"
           hover={{
             shadow: "one",
+            background: { type: "color", which: "one" },
           }}
           transition="one"
         >

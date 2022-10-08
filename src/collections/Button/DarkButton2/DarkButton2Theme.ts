@@ -10,7 +10,7 @@ export default {
     one: "box-shadow: 0 0 30px rgb(255 0 158 / 50%)",
   },
   transitions: {
-    one: "transition: box-shadow .3s",
+    one: "transition: all .3s ease-in-out",
   },
   gradients: {
     one: {

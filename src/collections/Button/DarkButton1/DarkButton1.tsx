@@ -7,23 +7,19 @@ const DarkButton1 = (props: { [key: string]: any }) => {
     <AllUiProvider myTheme={DarkButton1Theme}>
       <ButtonRaw
         {...props}
-        background={{ type: "gradient", which: "one" }}
-        borderRadius="1rem"
-        padding="2px"
+        background={{ type: "color", which: "three" }}
+        fontColor="two"
+        letterSpacing="1px"
+        hover={{
+          background: { type: "color", which: "one" },
+          borderRadius: "3rem",
+          shadow: "one",
+        }}
+        transition="one"
+        borderRadius=".8rem"
+        padding="0.5rem 1.5rem"
       >
-        <Div
-          padding="0.3rem 1.5rem"
-          borderRadius="1rem"
-          background={{ type: "color", which: "one" }}
-          fontColor="two"
-          letterSpacing="1px"
-          hover={{
-            shadow: "one",
-          }}
-          transition="one"
-        >
-          {props.children}
-        </Div>
+        {props.children}
       </ButtonRaw>
     </AllUiProvider>
   );
