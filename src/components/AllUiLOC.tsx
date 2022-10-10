@@ -14,6 +14,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     style,
     type,
     background,
+    backgroundColor,
     hover,
     focus,
     fontColor,
@@ -23,8 +24,14 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     fontWeight,
     lineHeight,
     letterSpacing,
+    width,
+    height,
     padding,
     border,
+    borderTop,
+    borderBottom,
+    borderLeft,
+    borderRight,
     borderRadius,
     as,
     tag,
@@ -32,6 +39,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     setTheme,
     baseClassNames,
     animation,
+    shadow,
   } = props;
   // Font Szie needs to be rethinked over whether to be inherited or common styled
   const Tag = tag`
@@ -44,14 +52,23 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     };
     ${Utils.getFontColor(fontColor, theme) || null};
 
+    ${Utils.getCommonStyles("width", width, theme) || null};
+    ${Utils.getCommonStyles("height", height, theme) || null};
     ${Utils.getCommonStyles("padding", padding, theme) || null};
     ${Utils.getCommonStyles("font-size", fontSize, theme) || null};
     ${Utils.getCommonStyles("border", border, theme) || null};
+    ${Utils.getCommonStyles("border", border, theme) || null};
+    ${Utils.getCommonStyles("border-top", borderTop, theme) || null};
+    ${Utils.getCommonStyles("border-bottom", borderBottom, theme) || null};
+    ${Utils.getCommonStyles("border-left", borderLeft, theme) || null};
+    ${Utils.getCommonStyles("border-right", borderRight, theme) || null};
     ${Utils.getCommonStyles("border-radius", borderRadius, theme) || null};
+    ${Utils.getShadow(shadow, theme) || null};
     ${Utils.getTransition(transition, theme) || null};
     ${Utils.getAnimation(animation, theme) || null};
 
-    ${Utils.getBackground(background, theme) || null};
+    ${Utils.getBackground("background", background, theme) || null};
+    ${Utils.getBackground("background-color", backgroundColor, theme) || null};
     ${Utils.getHoverOrFocus("hover", hover, theme) || null};
     ${Utils.getHoverOrFocus("focus", focus, theme) || null};
     

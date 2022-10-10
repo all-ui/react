@@ -1,11 +1,11 @@
 import _ from "lodash";
 import { Theme } from "./AllUiProvider/AllUiProvider.types";
 
-export const getBackground = (background: any, theme: Theme) => {
+export const getBackground = (which: string, background: any, theme: Theme) => {
   let backgroundFinal: string = "";
 
   if (background && background.type === "color") {
-    backgroundFinal = `background: ${
+    backgroundFinal = `${which}: ${
       theme[background.type + "s"][background.which] || background.which
     }`;
   }
@@ -51,7 +51,7 @@ export const getFontColor = (fontColor: any, theme: Theme) => {
   return fontColorFinal;
 };
 
-export const getShadow = (shadow: string, theme: Theme) => {
+export const getShadow = (shadow: any, theme: Theme) => {
   return theme.shadows[shadow];
 };
 
@@ -81,7 +81,7 @@ export const getHoverOrFocus = (which: string, prop: any, theme: Theme) => {
   if (prop && !_.isEmpty(prop)) {
     styleFinal = `&:${which} {`;
     if (prop.background) {
-      styleFinal += `${getBackground(prop.background, theme)}; `;
+      styleFinal += `${getBackground("background", prop.background, theme)}; `;
     }
     if (prop.shadow) {
       styleFinal += `${getShadow(prop.shadow, theme)}; `;

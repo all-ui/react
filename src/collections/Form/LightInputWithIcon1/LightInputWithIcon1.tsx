@@ -1,0 +1,32 @@
+import React, { useEffect } from "react";
+import LightInputWithIcon1Theme from "./LightInputWithIcon1Theme";
+import { AllUiProvider, useTheme, Input, Icon } from "../../../components";
+
+const LightInputWithIcon1 = (props: { [key: string]: any }) => {
+  return (
+    <AllUiProvider myTheme={LightInputWithIcon1Theme}>
+      <Input
+        {...props}
+        background={{ type: "color", which: "one" }}
+        fontColor="two"
+        letterSpacing="1px"
+        border="1px solid #ccc"
+        hover={{
+          //background: { type: "color", which: "three" },
+          //borderRadius: "3rem",
+          shadow: "two",
+        }}
+        focus={{
+          //background: { type: "color", which: "three" },
+          shadow: "one",
+          //borderRadius: "3rem",
+        }}
+        transition="one"
+        borderRadius="1rem"
+        padding="0.5rem 1rem 0.5rem 2.5rem"
+      />
+    </AllUiProvider>
+  );
+};
+
+export default LightInputWithIcon1;

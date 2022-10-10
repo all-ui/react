@@ -111,6 +111,7 @@ export interface ComponentProps extends Root {
   className?: string;
   style?: Object;
   background?: { type: "gradient" | "color"; which: string };
+  backgroundColor?: { type: "gradient" | "color"; which: string };
   as?: string | Root;
 
   hover?: { [key: string]: any };
@@ -123,9 +124,18 @@ export interface ComponentProps extends Root {
   fontColor?: string;
   fontSize?: string;
 
+  width?: string;
+  height?: string;
   padding?: string;
   border?: string;
+  borderTop?: string;
+  borderBottom?: string;
+  borderLeft?: string;
+  borderRight?: string;
   borderRadius?: string;
+
+  shadow?: string;
+
   transition?: string;
   animation?: string;
 }
