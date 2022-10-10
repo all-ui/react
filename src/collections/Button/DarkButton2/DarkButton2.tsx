@@ -12,7 +12,7 @@ const DarkButton1 = (props: { [key: string]: any }) => {
         padding="2px"
       >
         <Div
-          padding="0.3rem 1.5rem"
+          padding="0.2rem 1.5rem"
           borderRadius="1rem"
           background={{ type: "color", which: "three" }}
           fontColor="two"

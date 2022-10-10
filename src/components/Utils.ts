@@ -59,6 +59,10 @@ export const getTransition = (transition: any, theme: Theme) => {
   return theme.transitions[transition];
 };
 
+export const getAnimation = (animation: any, theme: Theme) => {
+  return theme.animations[animation];
+};
+
 export const getHoverOrFocus = (which: string, prop: any, theme: Theme) => {
   let styleFinal: string = "";
 

@@ -99,6 +99,10 @@ export const defaultTheme: Theme = {
     one: "transition: background 0.23s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius .7s ease-in-out",
     two: "transition: all .5s",
   },
+  animations: {
+    one: "animation: c-2-f 1s ease forwards 1",
+    two: "animation: b-2-o 1s ease forwards 1",
+  },
 };
 
 export interface ComponentProps extends Root {
@@ -122,6 +126,7 @@ export interface ComponentProps extends Root {
   border?: string;
   borderRadius?: string;
   transition?: string;
+  animation?: string;
 }
 
 export interface LOCProps extends ComponentProps {

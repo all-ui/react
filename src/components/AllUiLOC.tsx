@@ -31,6 +31,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     theme,
     setTheme,
     baseClassNames,
+    animation,
   } = props;
   // Font Szie needs to be rethinked over whether to be inherited or common styled
   const Tag = tag`
@@ -48,6 +49,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     ${Utils.getCommonStyles("border", border, theme) || null};
     ${Utils.getCommonStyles("border-radius", borderRadius, theme) || null};
     ${Utils.getTransition(transition, theme) || null};
+    ${Utils.getAnimation(animation, theme) || null};
 
     ${Utils.getBackground(background, theme) || null};
     ${Utils.getHoverOrFocus("hover", hover, theme) || null};
