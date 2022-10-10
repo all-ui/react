@@ -100,8 +100,9 @@ export const defaultTheme: Theme = {
     two: "transition: all .5s",
   },
   animations: {
-    one: "animation: c-2-f 1s ease forwards 1",
-    two: "animation: b-2-o 1s ease forwards 1",
+    one: "c-2-f 1.5s ease forwards 1",
+    two: "b-2-o 1s ease forwards 1",
+    three: "t-2-o 1.5s ease forwards 1",
   },
 };
 

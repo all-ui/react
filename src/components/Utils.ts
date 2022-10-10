@@ -60,7 +60,19 @@ export const getTransition = (transition: any, theme: Theme) => {
 };
 
 export const getAnimation = (animation: any, theme: Theme) => {
-  return theme.animations[animation];
+  if (animation && animation.length > 0) {
+    let animations: any = animation.split(" ");
+
+    let finalAnimation: string = "animation: ";
+    console.log("animations", animations);
+    animations.map((a: any, index: number) => {
+      finalAnimation +=
+        index !== animations.length - 1
+          ? `${theme.animations[a]}, `
+          : `${theme.animations[a]}`;
+    });
+    return finalAnimation;
+  }
 };
 
 export const getHoverOrFocus = (which: string, prop: any, theme: Theme) => {
