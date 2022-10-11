@@ -6,4 +6,5 @@ export { default as Input } from "./Input";
 export { default as Icon } from "./Icon";
 export { default as Div } from "./Div";
 export { default as Span } from "./Span";
+export { default as Link } from "./Link";
 export { AllUiProvider, useTheme } from "./AllUiProvider";

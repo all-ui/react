@@ -144,6 +144,7 @@ export interface ComponentProps extends Root {
 
   transition?: string;
   animation?: string;
+  href?: string;
 }
 
 export interface LOCProps extends ComponentProps {
