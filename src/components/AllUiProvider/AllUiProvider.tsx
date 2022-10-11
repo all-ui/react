@@ -18,7 +18,7 @@ const AllUiProvider = ({ children, myTheme }: AllUiProviderProps) => {
   const context = React.useContext(AllUiContext);
 
   if (context) {
-    defaultThemeCopy = context?.theme;
+    defaultThemeCopy = JSON.parse(JSON.stringify(context?.theme));
   }
 
   const [theme, setTheme] = React.useState(_.merge(defaultThemeCopy, myTheme));

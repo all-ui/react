@@ -3,6 +3,8 @@ import LightInputWithIcon1Theme from "./LightInputWithIcon1Theme";
 import { AllUiProvider, useTheme, Input, Icon } from "../../../components";
 
 const LightInputWithIcon1 = (props: { [key: string]: any }) => {
+  const { theme, setTheme } = useTheme();
+  console.log("theme in", theme);
   return (
     <AllUiProvider myTheme={LightInputWithIcon1Theme}>
       <Input
@@ -12,14 +14,10 @@ const LightInputWithIcon1 = (props: { [key: string]: any }) => {
         letterSpacing="1px"
         border="1px solid #ccc"
         hover={{
-          //background: { type: "color", which: "three" },
-          //borderRadius: "3rem",
           shadow: "two",
         }}
         focus={{
-          //background: { type: "color", which: "three" },
           shadow: "one",
-          //borderRadius: "3rem",
         }}
         transition="one"
         borderRadius="1rem"

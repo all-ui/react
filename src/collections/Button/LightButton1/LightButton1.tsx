@@ -7,7 +7,7 @@ const DarkButton1 = (props: { [key: string]: any }) => {
     <AllUiProvider myTheme={LightButton1Theme}>
       <ButtonRaw
         {...props}
-        background={{ type: "color", which: "four" }}
+        background={{ type: "color", which: "five" }}
         borderRadius="1rem"
         padding="0.3rem 1.5rem"
         fontColor="six"
@@ -15,7 +15,7 @@ const DarkButton1 = (props: { [key: string]: any }) => {
         //shadow="one"
         hover={{
           shadow: "one",
-          background: { type: "color", which: "five" },
+          background: { type: "color", which: "four" },
         }}
         transition="one"
       >

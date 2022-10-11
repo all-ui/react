@@ -46,6 +46,9 @@ export interface Theme extends BaseTheme {
   };
   shadows: { [key: string]: string };
   transitions: { [key: string]: string };
+  buttons: any;
+  inputs: any;
+  headings: any;
 }
 
 export type SetTheme = (theme: BaseTheme) => void;
@@ -104,6 +107,9 @@ export const defaultTheme: Theme = {
     two: "b-2-o 1s ease forwards 1",
     three: "t-2-o 1.5s ease forwards 1",
   },
+  buttons: {},
+  inputs: {},
+  headings: {},
 };
 
 export interface ComponentProps extends Root {
