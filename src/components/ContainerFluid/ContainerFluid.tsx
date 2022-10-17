@@ -5,21 +5,29 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { ContainerFluidProps } from "./ContainerFluid.types";
+import * as Utils from "../Utils";
+
+const Div = styled.div`
+  ${(props) => Utils.Common(props)}
+`;
 
 const ContainerFluid: FC<ContainerFluidProps> = forwardRef(
-  (props: ContainerFluidProps) => {
+  (props: any, ref: any) => {
     const { theme: themeOrg, setTheme } = useTheme();
     let theme: Theme = themeOrg || defaultTheme;
 
-    const Div = styled.div;
     return (
-      <AllUiLOC
+      <Div
         {...props}
-        tag={Div}
         theme={theme}
-        setTheme={setTheme}
-        baseClassNames="container-fluid"
-      ></AllUiLOC>
+        className={`${
+          props.className
+            ? "container-fluid " + props.className
+            : "container-fluid"
+        }`}
+      >
+        {props.children}
+      </Div>
     );
   }
 );

@@ -40,6 +40,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
     baseClassNames,
     animation,
     shadow,
+    innerRef,
   } = props;
   // Font Szie needs to be rethinked over whether to be inherited or common styled
   const Tag = tag`
@@ -77,6 +78,7 @@ const AllUiCommon: FC<AllUiLOCProps> = (props: AllUiLOCProps) => {
   return (
     <Tag
       {...props}
+      ref={innerRef}
       className={`${
         className
           ? ((baseClassNames || " ") + " " + className).trim()

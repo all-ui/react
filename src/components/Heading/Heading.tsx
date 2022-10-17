@@ -5,8 +5,9 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { HeadingProps } from "./Heading.types";
+import * as Utils from "../Utils";
 
-const Heading: FC<HeadingProps> = forwardRef((props: HeadingProps) => {
+const Heading: FC<HeadingProps> = forwardRef((props: HeadingProps, ref: any) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 

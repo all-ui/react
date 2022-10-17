@@ -5,20 +5,24 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { RowProps } from "./Row.types";
+import * as Utils from "../Utils";
 
-const Row: FC<RowProps> = forwardRef((props: RowProps) => {
+const RowTag = styled.div`
+  ${(props) => Utils.Common(props)}
+`;
+
+const Row: FC<RowProps> = forwardRef((props: any, ref: any) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const RowTag = styled.div;
   return (
-    <AllUiLOC
+    <RowTag
       {...props}
-      tag={RowTag}
       theme={theme}
-      setTheme={setTheme}
-      baseClassNames="row"
-    ></AllUiLOC>
+      className={`${props.className ? "row " + props.className : ""}`}
+    >
+      {props.children}
+    </RowTag>
   );
 });
 

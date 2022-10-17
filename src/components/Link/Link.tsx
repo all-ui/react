@@ -5,20 +5,25 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { LinkProps } from "./Link.types";
+import * as Utils from "../Utils";
 
-const Span: FC<LinkProps> = forwardRef((props: LinkProps) => {
+const LinkTag = styled.a`
+  ${(props) => Utils.Common(props)}
+`;
+
+const Link: FC<LinkProps> = forwardRef((props: any, ref: any) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const LinkTag = styled.a;
   return (
-    <AllUiLOC
+    <LinkTag
       {...props}
-      tag={LinkTag}
       theme={theme}
-      setTheme={setTheme}
-    ></AllUiLOC>
+      className={`${props.className ? props.className : ""}`}
+    >
+      {props.children}
+    </LinkTag>
   );
 });
 
-export default AllUiCssHOC(Span);
+export default AllUiCssHOC(Link);

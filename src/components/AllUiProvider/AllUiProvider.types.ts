@@ -104,8 +104,9 @@ export const defaultTheme: Theme = {
   },
   animations: {
     one: "c-2-f 1.5s ease forwards 1",
-    two: "b-2-o 1s ease forwards 1",
+    two: "b-2-o 1.5s ease forwards 1",
     three: "t-2-o 1.5s ease forwards 1",
+    four: "c-2-fh .6s ease forwards 1",
   },
   buttons: {},
   inputs: {},

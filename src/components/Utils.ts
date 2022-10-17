@@ -99,3 +99,76 @@ export const getHoverOrFocus = (which: string, prop: any, theme: Theme) => {
   }
   return styleFinal;
 };
+
+export const Common = (props: any) => {
+  const {
+    children,
+    className,
+    style,
+    type,
+    background,
+    backgroundColor,
+    hover,
+    focus,
+    fontColor,
+    transition,
+    fontFamily,
+    fontSize,
+    fontWeight,
+    lineHeight,
+    letterSpacing,
+    width,
+    height,
+    padding,
+    border,
+    borderTop,
+    borderBottom,
+    borderLeft,
+    borderRight,
+    borderRadius,
+    as,
+    tag,
+    theme,
+    setTheme,
+    baseClassNames,
+    animation,
+    shadow,
+    innerRef,
+  } = props;
+  return `
+  ${fontFamily ? getInheritableStyles("font-family", fontFamily, theme) : ""};
+  
+  ${fontWeight ? getInheritableStyles("font-weight", fontWeight, theme) : ""};
+  ${lineHeight ? getInheritableStyles("line-height", lineHeight, theme) : ""};
+  ${
+    letterSpacing
+      ? getInheritableStyles("letter-spacing", letterSpacing, theme)
+      : ""
+  };
+  ${fontColor ? getFontColor(fontColor, theme) : ""};
+
+  ${width ? getCommonStyles("width", width, theme) : ""};
+  ${height ? getCommonStyles("height", height, theme) : ""};
+  ${padding ? getCommonStyles("padding", padding, theme) : ""};
+  ${fontSize ? getCommonStyles("font-size", fontSize, theme) : ""};
+  ${border ? getCommonStyles("border", border, theme) : ""};
+
+  ${borderTop ? getCommonStyles("border-top", borderTop, theme) : ""};
+  ${borderBottom ? getCommonStyles("border-bottom", borderBottom, theme) : ""};
+  ${borderLeft ? getCommonStyles("border-left", borderLeft, theme) : ""};
+  ${borderRight ? getCommonStyles("border-right", borderRight, theme) : ""};
+  ${borderRadius ? getCommonStyles("border-radius", borderRadius, theme) : ""};
+  ${shadow ? getShadow(shadow, theme) : ""};
+  ${transition ? getTransition(transition, theme) : ""};
+  ${animation ? getAnimation(animation, theme) : ""};
+
+  ${background ? getBackground("background", background, theme) : ""};
+  ${
+    backgroundColor
+      ? getBackground("background-color", backgroundColor, theme)
+      : ""
+  };
+  ${hover ? getHoverOrFocus("hover", hover, theme) : ""};
+  ${focus ? getHoverOrFocus("focus", focus, theme) : ""};
+`;
+};

@@ -5,19 +5,22 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { IconProps } from "./Icon.types";
+import * as Utils from "../Utils";
 
-const Icon: FC<IconProps> = forwardRef((props: IconProps) => {
+const IconTag = styled.i`
+  ${(props) => Utils.Common(props)}
+`;
+
+const Icon: FC<IconProps> = forwardRef((props: any, ref: any) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const IconTag = styled.i;
   return (
-    <AllUiLOC
+    <IconTag
       {...props}
-      tag={IconTag}
       theme={theme}
-      setTheme={setTheme}
-    ></AllUiLOC>
+      className={`${props.className ? props.className : ""}`}
+    />
   );
 });
 

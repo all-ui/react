@@ -8,4 +8,5 @@ export { default as Icon } from "./Icon";
 export { default as Div } from "./Div";
 export { default as Span } from "./Span";
 export { default as Link } from "./Link";
+export { default as Li } from "./Li";
 export { AllUiProvider, useTheme } from "./AllUiProvider";

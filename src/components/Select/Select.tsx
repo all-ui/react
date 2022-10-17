@@ -1,12 +1,15 @@
-import React, { FC, forwardRef } from "react";
+import React, { FC, forwardRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useTheme } from "../AllUiProvider";
 import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { SelectProps } from "./Select.types";
+import Div from "../Div";
+import Input from "../Input";
+import Li from "../Li";
 
-const Select: FC<SelectProps> = forwardRef((props: SelectProps) => {
+const Select: FC<SelectProps> = forwardRef((props: SelectProps, ref: any) => {
   const {
     children,
     className,
@@ -37,15 +40,81 @@ const Select: FC<SelectProps> = forwardRef((props: SelectProps) => {
     baseClassNames,
     animation,
     shadow,
+    inputStyles,
+    dropdownStyles,
+    listItemStyles,
+    options,
+    placeholder,
+    onChange,
+    value,
   } = props;
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
+  const [active, setActive] = useState(false);
+  const [inpValue, setInpValue] = useState(value || "");
+  const [optionsFilt, setOptionsFilt] = useState([]);
+
+  useEffect(() => {
+    setOptionsFilt(options);
+  }, []);
+
+  const search = (term: any) => {
+    let optionsFiltInit =
+      term && term.length > 0
+        ? options.filter((option: any) =>
+            option.label.toLowerCase().includes(term.toLowerCase())
+          )
+        : options;
+    setOptionsFilt(optionsFiltInit);
+    setInpValue(term);
+  };
 
   return (
-    <div className="select-box">
-      <div className="selected-box">Select</div>
-      <div className="dropdown"></div>
-    </div>
+    <Div {...props} className="select-box">
+      <Div className="selected-box">
+        <Input
+          {...inputStyles}
+          withIcon={props.withIcon}
+          className="input"
+          onFocus={() => setActive(!active)}
+          //onBlur={() => setActive(false)}
+          placeholder={placeholder}
+          value={inpValue}
+          onChange={(e: any) => search(e.target.value)}
+          ref={ref}
+          readOnly={props.search ? false : true}
+          style={{ cursor: "pointer" }}
+        />
+      </Div>
+
+      {active && (
+        <Div
+          {...dropdownStyles}
+          className={`${
+            active
+              ? "select-dropdown select-dropdown-active"
+              : "select-dropdown"
+          }`}
+        >
+          {optionsFilt.map((option: any, index: any) => {
+            return (
+              <Li
+                {...listItemStyles}
+                className="select-dropdown-list-item"
+                key={`item-${index}`}
+                onClick={(e: any) => {
+                  onChange(option.label);
+                  setInpValue(option.label);
+                  setActive(false);
+                }}
+              >
+                {option.label}
+              </Li>
+            );
+          })}
+        </Div>
+      )}
+    </Div>
   );
 });
 

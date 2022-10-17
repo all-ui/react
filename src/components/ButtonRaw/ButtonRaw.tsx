@@ -5,20 +5,24 @@ import { defaultTheme, Theme } from "../AllUiProvider/AllUiProvider.types";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { ButtonRawProps } from "./ButtonRaw.types";
+import * as Utils from "../Utils";
 
-const ButtonRaw: FC<ButtonRawProps> = forwardRef((props: ButtonRawProps) => {
+const ButtonTag = styled.button`
+  ${(props) => Utils.Common(props)}
+`;
+
+const ButtonRaw: FC<ButtonRawProps> = forwardRef((props: any, ref: any) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const ButtonTag = styled.button;
   return (
-    <AllUiLOC
+    <ButtonTag
       {...props}
-      tag={ButtonTag}
       theme={theme}
-      setTheme={setTheme}
-      baseClassNames="btn"
-    ></AllUiLOC>
+      className={`${props.className ? "btn " + props.className : "btn"}`}
+    >
+      {props.children}
+    </ButtonTag>
   );
 });
 

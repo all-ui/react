@@ -6,37 +6,46 @@ import Div from "../Div";
 import AllUiCssHOC from "../AllUiHOC";
 import AllUiLOC from "../AllUiLOC";
 import { InputProps } from "./Input.types";
+import * as Utils from "../Utils";
 
-const Input: FC<InputProps> = forwardRef((props: InputProps) => {
+const InputTag = styled.input`
+  ${(props) => Utils.Common(props)}
+`;
+
+const Input: FC<InputProps> = forwardRef((props: any, ref: any) => {
   const { theme: themeOrg, setTheme } = useTheme();
   let theme: Theme = themeOrg || defaultTheme;
 
-  const InputTag = styled.input;
   if (props.withIcon) {
     return (
       <Div
         className="input-with-icon full-width"
         //animation={props.animation || null}
       >
-        <AllUiLOC
+        <InputTag
           {...props}
-          tag={InputTag}
           theme={theme}
-          setTheme={setTheme}
-          baseClassNames="input"
-        ></AllUiLOC>
+          className={`${
+            props.className ? "input " + props.className : "input"
+          }`}
+          innerRef={ref}
+        >
+          {props.children}
+        </InputTag>
+
         <span className="">{props.withIcon}</span>
       </Div>
     );
   }
   return (
-    <AllUiLOC
+    <InputTag
       {...props}
-      tag={InputTag}
       theme={theme}
-      setTheme={setTheme}
-      baseClassNames="input"
-    ></AllUiLOC>
+      className={`${props.className ? "input " + props.className : "input"}`}
+      innerRef={ref}
+    >
+      {props.children}
+    </InputTag>
   );
 });
 
