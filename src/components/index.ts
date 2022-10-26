@@ -4,6 +4,8 @@ export { default as ButtonRaw } from "./ButtonRaw";
 export { default as Heading } from "./Heading";
 export { default as Input } from "./Input";
 export { default as Select } from "./Select";
+export { default as MultiSelect } from "./MultiSelect";
+export { default as PhoneSelect } from "./PhoneSelect";
 export { default as Icon } from "./Icon";
 export { default as Div } from "./Div";
 export { default as Span } from "./Span";

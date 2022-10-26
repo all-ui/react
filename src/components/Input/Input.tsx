@@ -28,12 +28,23 @@ const Input: FC<InputProps> = forwardRef((props: any, ref: any) => {
           className={`${
             props.className ? "input " + props.className : "input"
           }`}
-          innerRef={ref}
+          ref={ref}
         >
           {props.children}
         </InputTag>
 
-        <span className="">{props.withIcon}</span>
+        <span>{props.withIcon}</span>
+        <span>
+          {props.errorProps &&
+            props.errorProps.errorMsg &&
+            props.errorProps.errorMsg.length > 0 &&
+            props.errorProps.errorIcon}
+        </span>
+        {props.errorProps &&
+          props.errorProps.errorMsg &&
+          props.errorProps.errorMsg.length > 0 && (
+            <span className="input-error-msg">{props.errorProps.errorMsg}</span>
+          )}
       </Div>
     );
   }

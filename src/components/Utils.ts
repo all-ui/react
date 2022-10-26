@@ -100,7 +100,7 @@ export const getHoverOrFocus = (which: string, prop: any, theme: Theme) => {
   return styleFinal;
 };
 
-export const Common = (props: any) => {
+export const Common: any = (props: any) => {
   const {
     children,
     className,
@@ -134,6 +134,7 @@ export const Common = (props: any) => {
     animation,
     shadow,
     innerRef,
+    errorProps,
   } = props;
   return `
   ${fontFamily ? getInheritableStyles("font-family", fontFamily, theme) : ""};
@@ -170,5 +171,6 @@ export const Common = (props: any) => {
   };
   ${hover ? getHoverOrFocus("hover", hover, theme) : ""};
   ${focus ? getHoverOrFocus("focus", focus, theme) : ""};
+  ${errorProps && errorProps.errorMsg ? Common({ ...errorProps, theme }) : ""}
 `;
 };

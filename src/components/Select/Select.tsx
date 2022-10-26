@@ -8,6 +8,7 @@ import { SelectProps } from "./Select.types";
 import Div from "../Div";
 import Input from "../Input";
 import Li from "../Li";
+import Icon from "../Icon";
 
 const Select: FC<SelectProps> = forwardRef((props: SelectProps, ref: any) => {
   const {
@@ -85,6 +86,14 @@ const Select: FC<SelectProps> = forwardRef((props: SelectProps, ref: any) => {
           readOnly={props.search ? false : true}
           style={{ cursor: "pointer" }}
         />
+        <div className="select-chevron">
+          <Icon
+            className={active ? `ai ai-chevron-up` : `ai ai-chevron-down`}
+            fontColor="nine"
+            padding="0.5rem .4rem"
+            fontSize="1rem"
+          />
+        </div>
       </Div>
 
       {active && (
