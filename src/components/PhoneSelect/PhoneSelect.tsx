@@ -562,7 +562,7 @@ const PhoneSelect: FC<PhoneSelectProps> = forwardRef(
               onModify({ ...phoneValue, phone: e.target.value });
             }}
             onFocus={() => setActive(false)}
-            ref={inputRef}
+            //ref={inputRef}
             readOnly={props.search ? false : true}
             //{...inputStyles.focus}
           />
@@ -589,7 +589,7 @@ const PhoneSelect: FC<PhoneSelectProps> = forwardRef(
             </span>
           </Div>
         </Div>
-        <span className="phone-select-icon">{withIcon}</span>
+        {/* <span className="phone-select-icon">{withIcon}</span> */}
         {active && (
           <Div
             {...dropdownStyles}
@@ -626,6 +626,7 @@ const PhoneSelect: FC<PhoneSelectProps> = forwardRef(
                       dial_code: option.dial_code,
                     });
                     setActive(false);
+                    setOptionsFilt(options);
                   }}
                 >
                   <span>
